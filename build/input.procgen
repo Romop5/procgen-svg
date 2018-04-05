@@ -1,0 +1,6 @@
+#include "svg.procgen"
+
+int init()
+{
+	appendSymbol(circle(10.0,10.0,50.0));
+}

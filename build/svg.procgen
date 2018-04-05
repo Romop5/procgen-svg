@@ -1,0 +1,32 @@
+/*
+	Purpose: definition of SVG primitives
+	Note: this file provides basic structures for outputting SVG.
+		All structures are expected at top level in order to work.
+*/
+
+// <circle dx=x dy=y r=radius></circle>
+using circle = struct {
+	float x;
+	float y;
+	float radius;
+}; 
+
+// <ellipse cx=x cy=y rx=dx ry=dy></ellipse>
+using ellipse = struct {
+	float x;
+	float y;
+	float dx;
+	float dy;
+};
+
+//<line x1="0" y1="0" x2="200" y2="200"></line>
+using line= struct {
+	float x;
+	float y;
+	float xb;
+	float yb;
+};
+
+//Polyline <polyline>
+//Polygon <polygon>
+//Path <path>
