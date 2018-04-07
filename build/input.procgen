@@ -1,13 +1,82 @@
 #include "svg.procgen"
 
+using pseudoCircle = struct
+{
+	circle crcl;
+	int timeToLive;
+};
+
+using derivationRule = rule pseudoCircle
+{
+	if(this.timeToLive > 0)
+	{
+		return true;
+	}
+	return false;
+} {
+	// apply transformation
+
+	// split circle to 4 smaller ones
+
+
+	circle tmp = this.crcl;
+	// First - -
+	tmp.x = this.crcl.x - this.crcl.radius / 2.0;	
+	tmp.y = this.crcl.y - this.crcl.radius / 2.0;	
+	tmp.radius = this.crcl.radius / 2.0;
+	if(random() < 0.3)
+	{
+		tmp.style = EMPTYSTYLE;
+	}
+	appendSymbol(pseudoCircle(tmp, this.timeToLive - 1));
+
+	// Second - +
+	tmp.x = this.crcl.x - this.crcl.radius / 2.0;	
+	tmp.y = this.crcl.y + this.crcl.radius / 2.0;	
+	tmp.radius = this.crcl.radius / 2.0;
+	appendSymbol(pseudoCircle(tmp, this.timeToLive - 1));
+	
+	// First + -
+	tmp.x = this.crcl.x + this.crcl.radius / 2.0;	
+	tmp.y = this.crcl.y - this.crcl.radius / 2.0;	
+	tmp.radius = this.crcl.radius / 2.0;
+	appendSymbol(pseudoCircle(tmp, this.timeToLive - 1));
+
+	// Second + +
+	tmp.x = this.crcl.x + this.crcl.radius / 2.0;	
+	tmp.y = this.crcl.y + this.crcl.radius / 2.0;	
+	tmp.radius = this.crcl.radius / 2.0;
+	//appendSymbol(pseudoCircle(tmp, this.timeToLive - 1));
+	
+	
+};
+
+using conversionRule = rule pseudoCircle
+{
+	if(this.timeToLive == 0 )
+	{
+		return true;
+	} return false;
+} {
+	// convert pseudo to real circle
+	appendSymbol(this.crcl);
+};
 int init()
 {
 	// initialize constants
 	initSVG();
 	
-	collection style;
-	style.insert(fillColorStyle(REDCOLOR));
+	collection redstyle;
+	redstyle.insert(fillColorStyle(REDCOLOR));
 
-	appendSymbol(circle(100.0,100.0,50.0,EMPTYSTYLE));
-	appendSymbol(circle(200.0,100.0,50.0,style));
+	//appendSymbol(circle(100.0,100.0,50.0,EMPTYSTYLE));
+	//appendSymbol(circle(200.0,100.0,50.0,style));
+
+	float middleX = WIDTH / 2.0;
+	float middleY = HEIGHT / 2.0;
+
+	
+	appendSymbol(pseudoCircle(circle(middleX,middleY,middleX,redstyle), 5));
+
+
 }

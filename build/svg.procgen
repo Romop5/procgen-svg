@@ -1,22 +1,39 @@
 /*
+	Project: ProcGen<at>FIT VUTBR
+	Author: Roman Dobias
 	Purpose: definition of SVG primitives
 	Note: this file provides basic structures for outputting SVG.
 		All structures are expected at top level in order to work.
 */
 
+///////////////////////////////////////////////////////////////////////////////
+//	STYLE DEFINITIONS
+///////////////////////////////////////////////////////////////////////////////
+
+// These structures define parts of CSS style which can be aplied to each
+// primitive. In order to use style, collection with name "style"
+// is defined to primitive and contains instances of following structures:
+
+// Utility RGB vector structure
 using rgb = struct {
 	int r;
 	int g;
 	int b;
 };
+
+// fillColorStyle stands for fill: rgb(r,g,b)
 using fillColorStyle = struct {
 	rgb color;	
 };
 
+// strokeColorStyle stands for color: rgb(r,g,b)
 using strokeColorStyle = struct {
 	rgb color;	
 };
 
+///////////////////////////////////////////////////////////////////////////////
+//	PRIMITIVES	
+///////////////////////////////////////////////////////////////////////////////
 
 // <circle dx=x dy=y r=radius></circle>
 using circle = struct {
@@ -43,6 +60,9 @@ using line= struct {
 	float yb;
 };
 
+//Polyline <polyline>
+//Polygon <polygon>
+//Path <path>
 
 
 // define always empty style to simplify construction
@@ -51,12 +71,28 @@ parameter collection EMPTYSTYLE;
 // red color RGB
 parameter rgb REDCOLOR;
 
+// Picture width - defined in C++
+parameter int WIDTH;
+
+// Picture height - defined in C++
+parameter int HEIGHT;
+
 // Initialize constants
 int initSVG()
 {
 	REDCOLOR = rgb(255,0,0);
+
+	print(WIDTH);
+	print(HEIGHT);
+
+	if(WIDTH == 0)
+	{
+		WIDTH = 1024;
+	}
+
+	if(HEIGHT == 0)
+	{
+		HEIGHT = 1024;
+	}
 }
 
-//Polyline <polyline>
-//Polygon <polygon>
-//Path <path>

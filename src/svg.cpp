@@ -3,6 +3,9 @@
 
 using namespace ProcGen;
 
+const int WIDTH  = 1024;
+const int HEIGHT = 1024;
+
 void saveResultAsSVGFile(json result, char* fileName);
 int main(int argc, char** argv)
 {
@@ -13,7 +16,8 @@ int main(int argc, char** argv)
 	if(pg.isReady())
 	{
         // set uniform
-        pg.setUniform("ticks", 1000);
+        pg.setUniform("WIDTH", WIDTH);
+        pg.setUniform("HEIGHT", HEIGHT);
         if(pg.runInit() == false)
             return 1;
 		std::cout << "It's dones" << std::endl;
@@ -91,8 +95,8 @@ void saveResultAsSVGFile(json result, char* fileName)
 	XML::Exporter svgFile;
 	auto& svgTree = svgFile.getRoot();
 	svgTree.setName("svg");
-	svgTree["width"] = "500";
-	svgTree["height"] = "500";
+	svgTree["width"] = std::to_string(WIDTH);
+	svgTree["height"] = std::to_string(HEIGHT);
 
 	// for all top-level structures in result
 	for(auto &structure: result)	
