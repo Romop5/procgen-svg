@@ -2,5 +2,12 @@
 
 int init()
 {
-	appendSymbol(circle(10.0,10.0,50.0));
+	// initialize constants
+	initSVG();
+	
+	collection style;
+	style.insert(fillColorStyle(REDCOLOR));
+
+	appendSymbol(circle(100.0,100.0,50.0,EMPTYSTYLE));
+	appendSymbol(circle(200.0,100.0,50.0,style));
 }

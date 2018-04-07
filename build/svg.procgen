@@ -4,11 +4,27 @@
 		All structures are expected at top level in order to work.
 */
 
+using rgb = struct {
+	int r;
+	int g;
+	int b;
+};
+using fillColorStyle = struct {
+	rgb color;	
+};
+
+using fill = struct {
+	float r;
+	float g;
+	float b;
+};
+
 // <circle dx=x dy=y r=radius></circle>
 using circle = struct {
 	float x;
 	float y;
 	float radius;
+	collection style;
 }; 
 
 // <ellipse cx=x cy=y rx=dx ry=dy></ellipse>
@@ -17,6 +33,7 @@ using ellipse = struct {
 	float y;
 	float dx;
 	float dy;
+	collection style;
 };
 
 //<line x1="0" y1="0" x2="200" y2="200"></line>
@@ -26,6 +43,20 @@ using line= struct {
 	float xb;
 	float yb;
 };
+
+
+
+// define always empty style to simplify construction
+parameter collection EMPTYSTYLE;
+
+// red color RGB
+parameter rgb REDCOLOR;
+
+// Initialize constants
+int initSVG()
+{
+	REDCOLOR = rgb(255,0,0);
+}
 
 //Polyline <polyline>
 //Polygon <polygon>
