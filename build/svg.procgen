@@ -60,7 +60,19 @@ using line= struct {
 	float yb;
 };
 
-//Polyline <polyline>
+using point = struct {
+    float x;
+    float y;
+};
+
+//<polyline points="x1,y1 x2,y2"...></polyline>
+using polyline= struct {
+    // collection of point
+    collection points;
+};
+
+
+
 //Polygon <polygon>
 //Path <path>
 
