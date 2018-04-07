@@ -13,11 +13,10 @@ using fillColorStyle = struct {
 	rgb color;	
 };
 
-using fill = struct {
-	float r;
-	float g;
-	float b;
+using strokeColorStyle = struct {
+	rgb color;	
 };
+
 
 // <circle dx=x dy=y r=radius></circle>
 using circle = struct {

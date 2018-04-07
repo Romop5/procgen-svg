@@ -49,7 +49,41 @@ XML::Entity saveCircle(json circle)
 	return xmlCircle;
 }
 
+std::string rgbToString(json rgb)
+{
+	std::stringstream ss;
+	ss << "rgb(" << rgb["r"] << "," << rgb["g"] << "," << rgb["b"] << ")";
+	return ss.str();
+}
+std::string decodeStyle(json styleCollection)
+{
 
+	if(!styleCollection.is_array())
+	{
+		return "";	
+	}
+	std::stringstream ss;
+	// for each style element in collection
+	for(auto &styleElement: styleCollection)
+	{
+		if(!styleElement.is_structured())
+			continue;
+		if(styleElement.find("_type") == styleElement.end())
+			continue;
+		// decode fillColorStyle
+		if(styleElement["_type"] == "fillColorStyle")
+		{
+			ss << "fill: " << rgbToString(styleElement["color"]) << ";";
+		}
+		// decode strokeColorStyle
+		if(styleElement["_type"] == "strokeColorStyle")
+		{
+			ss << "color: " << rgbToString(styleElement["color"]) << ";";
+		}
+
+	}
+	return ss.str();
+}
 
 void saveResultAsSVGFile(json result, char* fileName)
 {
@@ -70,16 +104,29 @@ void saveResultAsSVGFile(json result, char* fileName)
 		// get user-defined type of structure from script
 		std::string typeOfStructure = structure["_type"].get<std::string>();	
 
+		XML::Entity resultEntity;
+
 		if(typeOfStructure == "ellipse")
-			svgTree.addChild(saveEllipse(structure));
+			resultEntity = saveEllipse(structure);
 
 		if(typeOfStructure == "circle")
-			svgTree.addChild(saveCircle(structure));
+			resultEntity = saveCircle(structure);
+
+		if(structure.find("style") != structure.end())
+		{
+			auto styleString = decodeStyle(structure["style"]);
+			resultEntity["style"] = styleString;
+		}	
+
+		svgTree.addChild(resultEntity);
 	}
 
 	// Ready to dump it out
 	std::cout << "Ready to dump: " << svgTree.serialize() << std::endl;
 	FILE* output = fopen(fileName, "w");
-	svgTree.dump(output);
-	fclose(output);
+	if(output != nullptr)
+	{
+		svgTree.dump(output);
+		fclose(output);
+	}
 }
