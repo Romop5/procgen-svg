@@ -9,10 +9,18 @@ const int HEIGHT = 1024;
 void saveResultAsSVGFile(json result, char* fileName);
 int main(int argc, char** argv)
 {
+
+    if(argc < 3)
+    {
+        std::cout << "USAGE: " << argv[0] << " <fileName> <resultName>" << std::endl;
+        return 1;
+    }
+
     ProcGen::Procgen pg;
     pg.setDebugOn(false);
 
-    pg.parseFile("input.procgen");
+    //pg.parseFile("input.procgen");
+    pg.parseFile(argv[1]);
     if (pg.isReady()) {
 	// Set uniforms
         pg.setUniform("WIDTH", WIDTH);
@@ -28,7 +36,7 @@ int main(int argc, char** argv)
         std::cout << "Result: " << result.dump(1) << "\n";
 
 	// Process resulting JSON tree as test.svg
-        saveResultAsSVGFile(result, "test.svg");
+        saveResultAsSVGFile(result, argv[2]);
 
     } else {
         std::cout << "Failed...\n";
@@ -144,8 +152,11 @@ void saveResultAsSVGFile(json result, char* fileName)
     svgTree.setName("svg");
     svgTree["xmlns"] = "http://www.w3.org/2000/svg";
     svgTree["version"] = "1.1";
-    //svgTree["width"] = std::to_string(WIDTH);
-    //svgTree["height"] = std::to_string(HEIGHT);
+
+    // Set viewbox according to VIEW and HEIGHT
+    std::stringstream viewBoxString;
+    viewBoxString << "0 0 " << WIDTH << " " << HEIGHT;
+    svgTree["viewBox"] = viewBoxString.str();
 
     // for all top-level structures in result
     for (auto& structure : result) {

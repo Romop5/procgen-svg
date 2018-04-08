@@ -61,5 +61,5 @@ int init()
     //appendSymbol(pseudoline(line(600.0,700.0,400.0,700.0,EMPTYSTYLE), 6));   
 
 
-        appendSymbol(pseudoline(line(300.0,100.0,1000.0,100.0,EMPTYSTYLE), 7));   
+        appendSymbol(pseudoline(line(400.0,400.0,600.0,400.0,EMPTYSTYLE), 10));   
 }

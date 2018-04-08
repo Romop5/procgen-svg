@@ -1,0 +1,65 @@
+#include "svg.procgen"
+using pseudoline = struct
+{
+    line real;
+    // ISA RULES
+    int TTL;
+};
+
+
+using transform = rule pseudoline
+{
+    if(this.TTL > 0)
+    {
+        return true;
+    }
+    return false;
+} {
+   // get middle point
+    float middlex = (this.real.x + this.real.xb)/2.0;  
+    float middley = (this.real.y + this.real.yb)/2.0;  
+
+    // get normal
+    float normalx = (-(this.real.yb - this.real.y))/2.0;
+    float normaly = (this.real.xb-this.real.x)/2.0;
+
+    float endX = middlex + normalx;
+    float endY = middley + normaly;
+
+    collection LINESTYLE;
+    LINESTYLE.insert(strokeWidthStyle(this.TTL*4.0));
+    LINESTYLE.insert(strokeColorStyle(REDCOLOR));
+
+    appendSymbol(pseudoline(line(this.real.x,this.real.y, endX, endY,LINESTYLE), this.TTL - 1));
+
+    LINESTYLE.del(0);
+    LINESTYLE.del(0);
+   
+    LINESTYLE.insert(strokeWidthStyle(this.TTL*2.0));
+    LINESTYLE.insert(strokeColorStyle(BLUECOLOR));
+
+    appendSymbol(pseudoline(line(endX, endY,this.real.xb, this.real.yb,LINESTYLE), this.TTL - 1));
+
+    
+};
+
+using end = rule pseudoline
+{
+    if(this.TTL == 0)
+    {
+        return true;
+    }
+    return false;
+} {
+    appendSymbol(this.real);
+};
+
+int init()
+{
+    initSVG();
+    //appendSymbol(pseudoline(line(400.0,500.0,600.0,500.0,EMPTYSTYLE), 6));   
+    //appendSymbol(pseudoline(line(600.0,700.0,400.0,700.0,EMPTYSTYLE), 6));   
+
+
+        appendSymbol(pseudoline(line(250.0,400.0,750.0,400.0,EMPTYSTYLE), 9));   
+}
