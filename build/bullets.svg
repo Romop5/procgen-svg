@@ -1,0 +1,488 @@
+<svg height = '1024' width = '1024' >
+<circle cx = '16.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '48.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '112.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '48.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '112.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '144.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '176.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '144.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '208.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '240.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '208.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '144.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '176.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '112.000000' cy = '144.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '144.000000' cy = '48.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '176.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '144.000000' cy = '80.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '144.000000' cy = '112.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '176.000000' cy = '80.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '208.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '208.000000' cy = '48.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '240.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '16.000000' cy = '272.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '304.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '272.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '336.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '368.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '336.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '272.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '304.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '112.000000' cy = '272.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '400.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '16.000000' cy = '432.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '48.000000' cy = '400.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '16.000000' cy = '464.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '16.000000' cy = '496.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '48.000000' cy = '464.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '80.000000' cy = '400.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '432.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '112.000000' cy = '400.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '272.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '144.000000' cy = '304.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '176.000000' cy = '272.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '144.000000' cy = '336.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '368.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '176.000000' cy = '336.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '208.000000' cy = '272.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '208.000000' cy = '304.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '240.000000' cy = '272.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '272.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '272.000000' cy = '48.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '304.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '272.000000' cy = '80.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '272.000000' cy = '112.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '304.000000' cy = '80.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '336.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '336.000000' cy = '48.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '368.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '272.000000' cy = '144.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '272.000000' cy = '176.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '304.000000' cy = '144.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '272.000000' cy = '208.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '272.000000' cy = '240.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '304.000000' cy = '208.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '336.000000' cy = '144.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '336.000000' cy = '176.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '368.000000' cy = '144.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '400.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '400.000000' cy = '48.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '432.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '400.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '400.000000' cy = '112.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '432.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '464.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '464.000000' cy = '48.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '496.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '560.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '592.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '624.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '592.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '560.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '112.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '656.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '688.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '656.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '720.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '752.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '720.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '656.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '688.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '112.000000' cy = '656.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '560.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '176.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '592.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '624.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '176.000000' cy = '592.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '208.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '208.000000' cy = '560.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '240.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '784.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '816.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '784.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '848.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '880.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '848.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '784.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '816.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '112.000000' cy = '784.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '912.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '944.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '912.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '976.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '16.000000' cy = '1008.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '48.000000' cy = '976.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '912.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '80.000000' cy = '944.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '112.000000' cy = '912.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '784.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '816.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '176.000000' cy = '784.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '848.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '144.000000' cy = '880.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '176.000000' cy = '848.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '208.000000' cy = '784.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '208.000000' cy = '816.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '240.000000' cy = '784.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '272.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '272.000000' cy = '560.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '304.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '272.000000' cy = '592.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '272.000000' cy = '624.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '304.000000' cy = '592.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '336.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '336.000000' cy = '560.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '368.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '272.000000' cy = '656.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '272.000000' cy = '688.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '304.000000' cy = '656.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '272.000000' cy = '720.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '272.000000' cy = '752.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '304.000000' cy = '720.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '336.000000' cy = '656.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '336.000000' cy = '688.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '368.000000' cy = '656.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '400.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '400.000000' cy = '560.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '432.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '400.000000' cy = '592.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '400.000000' cy = '624.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '432.000000' cy = '592.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '464.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '464.000000' cy = '560.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '496.000000' cy = '528.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '48.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '560.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '112.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '560.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '592.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '592.000000' cy = '48.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '624.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '144.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '176.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '560.000000' cy = '144.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '208.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '240.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '560.000000' cy = '208.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '592.000000' cy = '144.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '592.000000' cy = '176.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '624.000000' cy = '144.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '656.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '656.000000' cy = '48.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '688.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '656.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '656.000000' cy = '112.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '688.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '720.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '720.000000' cy = '48.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '752.000000' cy = '16.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '272.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '528.000000' cy = '304.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '560.000000' cy = '272.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '528.000000' cy = '336.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '368.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '560.000000' cy = '336.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '592.000000' cy = '272.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '592.000000' cy = '304.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '624.000000' cy = '272.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '400.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '432.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '560.000000' cy = '400.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '464.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '528.000000' cy = '496.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '560.000000' cy = '464.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '592.000000' cy = '400.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '592.000000' cy = '432.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '624.000000' cy = '400.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '656.000000' cy = '272.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '656.000000' cy = '304.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '688.000000' cy = '272.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '656.000000' cy = '336.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '656.000000' cy = '368.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '688.000000' cy = '336.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '720.000000' cy = '272.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '720.000000' cy = '304.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '752.000000' cy = '272.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '784.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '784.000000' cy = '48.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '816.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '784.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '784.000000' cy = '112.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '816.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '848.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '848.000000' cy = '48.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '880.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '784.000000' cy = '144.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '784.000000' cy = '176.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '816.000000' cy = '144.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '784.000000' cy = '208.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '784.000000' cy = '240.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '816.000000' cy = '208.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '848.000000' cy = '144.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '848.000000' cy = '176.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '880.000000' cy = '144.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '912.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '912.000000' cy = '48.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '944.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '912.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '912.000000' cy = '112.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '944.000000' cy = '80.000000' r = '16.000000' style = '' >
+</circle>
+<circle cx = '976.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '976.000000' cy = '48.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+<circle cx = '1008.000000' cy = '16.000000' r = '16.000000' style = 'fill: rgb(255,0,0);' >
+</circle>
+</svg>

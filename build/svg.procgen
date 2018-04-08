@@ -79,6 +79,15 @@ using polyline= struct {
     collection points;
 };
 
+//<polyline points="x1,y1 x2,y2"...></polyline>
+using path= struct {
+    // collection of point
+    collection points;
+    collection style;
+};
+
+
+
 
 
 //Polygon <polygon>
