@@ -40,20 +40,20 @@ int main(int argc, char** argv)
 XML::Entity saveEllipse(json ellipse)
 {
     XML::Entity xmlEllipse("ellipse");
-    xmlEllipse["cx"] = ellipse["x"].get<float>();
-    xmlEllipse["cy"] = ellipse["y"].get<float>();
-    xmlEllipse["rx"] = ellipse["dx"].get<float>();
-    xmlEllipse["ry"] = ellipse["dy"].get<float>();
+    xmlEllipse["cx"] = std::to_string(ellipse["x"].get<float>());
+    xmlEllipse["cy"] = std::to_string(ellipse["y"].get<float>());
+    xmlEllipse["rx"] = std::to_string(ellipse["dx"].get<float>());
+    xmlEllipse["ry"] = std::to_string(ellipse["dy"].get<float>());
     return xmlEllipse;
 }
 
 XML::Entity saveLine(json line)
 {
     XML::Entity xmlLine("line");
-    xmlLine["x1"] = line["x"].get<float>();
-    xmlLine["y1"] = line["y"].get<float>();
-    xmlLine["x2"] = line["xb"].get<float>();
-    xmlLine["y2"] = line["yb"].get<float>();
+    xmlLine["x1"] = std::to_string(line["x"].get<float>());
+    xmlLine["y1"] = std::to_string(line["y"].get<float>());
+    xmlLine["x2"] = std::to_string(line["xb"].get<float>());
+    xmlLine["y2"] = std::to_string(line["yb"].get<float>());
     return xmlLine;
 }
 
@@ -93,8 +93,13 @@ std::string decodeStyle(json styleCollection)
         }
         // decode strokeColorStyle
         if (styleElement["_type"] == "strokeColorStyle") {
-            ss << "color: " << rgbToString(styleElement["color"]) << ";";
+            ss << "stroke: " << rgbToString(styleElement["color"]) << ";";
         }
+        // decode strokeWidthStyle
+        if (styleElement["_type"] == "strokeWidthStyle") {
+            ss << "stroke-width: " << styleElement["thickness"].get<float>() << ";";
+        }
+
     }
     return ss.str();
 }
@@ -104,9 +109,12 @@ void saveResultAsSVGFile(json result, char* fileName)
     // Create XML tree for SVG file
     XML::Exporter svgFile;
     auto& svgTree = svgFile.getRoot();
+    // Build <svg> with correct parameters
     svgTree.setName("svg");
-    svgTree["width"] = std::to_string(WIDTH);
-    svgTree["height"] = std::to_string(HEIGHT);
+    svgTree["xmlns"] = "http://www.w3.org/2000/svg";
+    svgTree["version"] = "1.1";
+    //svgTree["width"] = std::to_string(WIDTH);
+    //svgTree["height"] = std::to_string(HEIGHT);
 
     // for all top-level structures in result
     for (auto& structure : result) {
@@ -141,6 +149,11 @@ void saveResultAsSVGFile(json result, char* fileName)
     // Ready to dump it out
     std::cout << "Ready to dump: " << svgTree.serialize() << std::endl;
     FILE* output = fopen(fileName, "w");
+
+    fprintf(output, "<?xml version=\"1.0\" standalone=\"no\"?>\n");
+    fprintf(output, "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n");
+
+
     if (output != nullptr) {
         svgTree.dump(output);
         fclose(output);

@@ -31,6 +31,13 @@ using strokeColorStyle = struct {
 	rgb color;	
 };
 
+// strokeWidthStyle stands for stroke-width: x 
+using strokeWidthStyle = struct {
+	float thickness;	
+};
+
+
+
 ///////////////////////////////////////////////////////////////////////////////
 //	PRIMITIVES	
 ///////////////////////////////////////////////////////////////////////////////
@@ -58,6 +65,7 @@ using line= struct {
 	float y;
 	float xb;
 	float yb;
+    collection style;
 };
 
 using point = struct {
@@ -80,8 +88,10 @@ using polyline= struct {
 // define always empty style to simplify construction
 parameter collection EMPTYSTYLE;
 
-// red color RGB
+// PREDEFINED COLORS
 parameter rgb REDCOLOR;
+parameter rgb BLUECOLOR;
+parameter rgb GREENCOLOR;
 
 // Picture width - defined in C++
 parameter int WIDTH;
@@ -93,6 +103,8 @@ parameter int HEIGHT;
 int initSVG()
 {
 	REDCOLOR = rgb(255,0,0);
+	BLUECOLOR= rgb(0,0,255);
+	GREENCOLOR= rgb(0,255,0);
 
 	print(WIDTH);
 	print(HEIGHT);
