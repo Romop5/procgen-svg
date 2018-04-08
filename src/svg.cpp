@@ -58,6 +58,37 @@ XML::Entity saveLine(json line)
 }
 
 
+XML::Entity savePath(json arrayOfPoints)
+{
+    using point_type = std::pair<float, float>;
+    std::vector<point_type> points;
+    XML::Entity path("path");
+    /*xmlLine["x1"] = std::to_string(line["x"].get<float>());
+    xmlLine["y1"] = std::to_string(line["y"].get<float>());
+    xmlLine["x2"] = std::to_string(line["xb"].get<float>());
+    xmlLine["y2"] = std::to_string(line["yb"].get<float>());
+    */
+
+    std::stringstream lineToString;
+    for(auto &point: arrayOfPoints)
+    {
+        points.push_back(std::make_pair(point["x"].get<float>(), point["y"].get<float>()));
+        lineToString << "L" << points.back().first << " " << points.back().second << " ";
+    }
+
+    std::stringstream pathString;
+
+    pathString << "M0 0 " << lineToString.str() << "Z";
+
+    path["d"] = pathString.str();
+
+    
+    return path;
+}
+
+
+
+
 
 XML::Entity saveCircle(json circle)
 {
@@ -137,6 +168,9 @@ void saveResultAsSVGFile(json result, char* fileName)
 
         if (typeOfStructure == "line")
             resultEntity = saveLine(structure);
+
+        if (typeOfStructure == "path")
+            resultEntity = savePath(structure["points"]);
 
         if (structure.find("style") != structure.end()) {
             auto styleString = decodeStyle(structure["style"]);

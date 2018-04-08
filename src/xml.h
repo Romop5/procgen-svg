@@ -38,7 +38,7 @@ public:
 					}
 					*/
             for (auto it = this->begin(); it != this->end(); ++it) {
-                ss << it->first << " = '" << it->second << "' ";
+                ss << it->first << " = \"" << it->second << "\" ";
             }
             ss << ">\n";
         }
