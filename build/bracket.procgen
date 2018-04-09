@@ -1,14 +1,26 @@
+/*
+   BRACKET L SYSTEM TREE
+   DONE USING PROCGEN
+   Author: Roman Dobias
+*/
 #include "svg.procgen"
 
 parameter float ANGLE = 60.0;
+parameter float RATE = 0.6;
 
+// this structure carries the point of growth, the way of growth and
+// thickness of subtree that will grow from this point
 using seed = struct 
 {
     point start;
     point way;
+    float thickness;
+
 };
 
 
+// this rule transforms all points to line and creates three new points in
+// the middle of line
 using transform = rule seed
 {
     return true;
@@ -16,7 +28,7 @@ using transform = rule seed
     float PI = 3.1415;
 
     collection STYLE;
-    STYLE.insert(strokeWidthStyle(1.0));
+    STYLE.insert(strokeWidthStyle(this.thickness));
     STYLE.insert(strokeColorStyle(REDCOLOR));
 
     appendSymbol(line(this.start.x, this.start.y, this.start.x+this.way.x, this.start.y+this.way.y, STYLE)); 
@@ -24,8 +36,8 @@ using transform = rule seed
 
     // decrease the size of way vector
 
-    this.way.x = this.way.x*0.5;
-    this.way.y = this.way.y*0.5;
+    this.way.x = this.way.x*RATE;
+    this.way.y = this.way.y*RATE;
 
     // create two seeds in the middle, rotated by angle
 
@@ -36,15 +48,14 @@ using transform = rule seed
                              cos(PI*ANGLE/180.0)*this.way.y-sin(PI*ANGLE/180.0)*this.way.x);
 
 
-    appendSymbol(seed(middlePoint, leftVector));
-    appendSymbol(seed(middlePoint, rightVector));
+    appendSymbol(seed(middlePoint, leftVector,this.thickness*RATE));
+    appendSymbol(seed(middlePoint, rightVector, this.thickness*RATE));
 };
 
 
 int init()
 {
-    // start seed
-    appendSymbol(seed(point(500.0,500.0), point(0.0,-300.0)));
-
-    setMaximumIterations(7);
+    // start seed at the bottom of SVG picture, covering whole picture
+    appendSymbol(seed(point(500.0,900.0), point(0.0,-700.0),30.0));
+    setMaximumIterations(12);
 }
