@@ -4,11 +4,15 @@ An example of using *ProcGen* library for SVG images.
 ## Examples
 <p align="center">
 
-<img alt="bullets.procgen" src="https://github.com/Romop5/procgen-svg/blob/master/build/bullet.svg.png?raw=true" width="300px">
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/bullet.svg.png?raw=true" width="300px">
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/densetree.svg.png?raw=true" width="300px">
 
-<img alt="nicehash.procgen" src="https://github.com/Romop5/procgen-svg/blob/master/build/nicehash.svg.png?raw=true" width="300px">
-
-<img alt="hash2.procgen" src="https://github.com/Romop5/procgen-svg/blob/master/build/result.svg.png?raw=true" width="300px">
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/ker-10angle.svg.png?raw=true" width="300px">
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/newhash.svg.png?raw=true" width="300px">
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/nicehash.svg.png?raw=true" width="300px">
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/output.svg.png?raw=true" width="300px">
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/strom-30-06.svg.png?raw=true" width="300px">
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/strom-sixedge.svg.png?raw=true" width="300px">
 
 </p>
 
