@@ -1,0 +1,50 @@
+#include "svg.procgen"
+
+parameter float ANGLE = 60.0;
+
+using seed = struct 
+{
+    point start;
+    point way;
+};
+
+
+using transform = rule seed
+{
+    return true;
+} {
+    float PI = 3.1415;
+
+    collection STYLE;
+    STYLE.insert(strokeWidthStyle(1.0));
+    STYLE.insert(strokeColorStyle(REDCOLOR));
+
+    appendSymbol(line(this.start.x, this.start.y, this.start.x+this.way.x, this.start.y+this.way.y, STYLE)); 
+    point middlePoint = point(this.start.x+(this.way.x)/2.0,this.start.y+(this.way.y)/2.0);
+
+    // decrease the size of way vector
+
+    this.way.x = this.way.x*0.5;
+    this.way.y = this.way.y*0.5;
+
+    // create two seeds in the middle, rotated by angle
+
+    point leftVector = point(cos(PI*ANGLE/180.0)*this.way.x-sin(PI*ANGLE/180.0)*this.way.y,
+                             cos(PI*ANGLE/180.0)*this.way.y+sin(PI*ANGLE/180.0)*this.way.x);
+
+    point rightVector = point(cos(PI*ANGLE/180.0)*this.way.x+sin(PI*ANGLE/180.0)*this.way.y,
+                             cos(PI*ANGLE/180.0)*this.way.y-sin(PI*ANGLE/180.0)*this.way.x);
+
+
+    appendSymbol(seed(middlePoint, leftVector));
+    appendSymbol(seed(middlePoint, rightVector));
+};
+
+
+int init()
+{
+    // start seed
+    appendSymbol(seed(point(500.0,500.0), point(0.0,-300.0)));
+
+    setMaximumIterations(7);
+}
