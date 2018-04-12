@@ -11,6 +11,11 @@ using F = struct { float unk; };
 using Plus = struct { float unk; };
 using Minus = struct { float unk; };
 
+using Push = struct { float unk; };
+using Pop = struct { float unk; };
+
 int doF() { appendSymbol(F(0.0)); }
 int doPlus() { appendSymbol(Plus(0.0)); }
 int doMinus() { appendSymbol(Minus(0.0)); }
+int push() { appendSymbol(Push(0.0)); }
+int pop() { appendSymbol(Pop(0.0)); }

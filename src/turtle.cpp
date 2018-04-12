@@ -58,6 +58,11 @@ void processTurtle(const json& symbols, const char* outputFileName,float thickne
 
     std::vector<Point> currentPolyline = { Point(0.0,0.0)};
 
+
+    // Stores triple (X,Y, angle) 
+    std::stack<std::pair<Point, float>> statesStack;
+
+
     // trace the L-system string
     for (auto& symbol : symbols) {
         if (symbol["_type"] == "F") {
@@ -82,6 +87,27 @@ void processTurtle(const json& symbols, const char* outputFileName,float thickne
         if (symbol["_type"] == "Minus") {
             angle -= incrementalAngle;
         }
+
+        if (symbol["_type"] == "Push") {
+            statesStack.push(std::make_pair(turtlePosition, angle));
+        }
+
+        if (symbol["_type"] == "Pop") {
+            if(statesStack.size() > 0)
+            {
+                auto restoredState = statesStack.top();
+                statesStack.pop();
+
+                // Terminate polyline
+                svgTree.addChild(createPolyline(currentPolyline, thickness));
+
+                // And create new one, starting in the restored position
+                currentPolyline.push_back(restoredState.first);
+
+                turtlePosition = restoredState.first;
+                angle = restoredState.second;
+            }
+        }
     }
 
     // Save current polyline
@@ -103,6 +129,8 @@ void processTurtle(const json& symbols, const char* outputFileName,float thickne
         svgTree.dump(output);
         fclose(output);
     }
+
+    std::cout << "Image size: " << ss.str() << std::endl;
 }
 
 int main(int argc, char ** argv)

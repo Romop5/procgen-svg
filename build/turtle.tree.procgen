@@ -1,0 +1,32 @@
+#include "stdturtle.procgen"
+
+parameter float THICKNESS = 1.0;
+parameter float ANGLE = 45.0;
+parameter float STEPSIZE = 70.0;
+
+using exampleRule = rule F
+{
+    return true;
+} {
+    doF();
+    push();
+    doPlus();
+    doF();
+    pop();
+    push();
+    doMinus();
+    doF();
+    pop();
+    doF();
+    //doF();
+
+};
+
+int init()
+{
+   doMinus();
+   doMinus();
+   doF();
+   setMaximumIterations(4);
+}
+
