@@ -1,0 +1,16 @@
+/*
+
+Project ProcGen - bachelor thesis
+Purpose:    Defines standard structures for turtle graphics
+Author:     Roman Dobias (xdobia11)
+
+*/
+
+
+using F = struct { float unk; };
+using Plus = struct { float unk; };
+using Minus = struct { float unk; };
+
+int doF() { appendSymbol(F(0.0)); }
+int doPlus() { appendSymbol(Plus(0.0)); }
+int doMinus() { appendSymbol(Minus(0.0)); }
