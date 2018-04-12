@@ -2,7 +2,7 @@
 
 parameter float THICKNESS = 3.0;
 parameter float ANGLE = 60.0;
-parameter float STEPSIZE = 3.0;
+parameter float STEPSIZE = 30.0;
 
 using exampleRule = rule F
 {
@@ -27,6 +27,6 @@ int init()
    doPlus();
    doPlus();
    doF();
-   setMaximumIterations(5);
+   setMaximumIterations(3);
 }
 

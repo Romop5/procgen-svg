@@ -16,6 +16,15 @@ An example of using *ProcGen* library for SVG images.
 
 </p>
 
+## Turtle graphics
+<p align="center">
+
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/turtle.snowflake.png?raw=true" width="300px">
+
+</p>
+
+
+
 ## Usage
 
 1. Write down script using ProcGen language and primitives defined in `svg.procgen`. 
