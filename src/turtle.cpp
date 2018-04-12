@@ -2,6 +2,7 @@
 #include <procgen/procgen.h>
 #include <procgen/utils/logger.h>
 #include <algorithm>
+#include <cmath> // <ctin> ? pun intended
 
 // Define 2D vector to simplify code
 struct Point
@@ -61,8 +62,8 @@ void processTurtle(const json& symbols, const char* outputFileName,float thickne
     for (auto& symbol : symbols) {
         if (symbol["_type"] == "F") {
             Point newPosition = Point(
-                    turtlePosition.x + stepSize * cos(3.1415*angle/180.0),
-                    turtlePosition.y + stepSize * sin(3.1415*angle/180.0));
+                    turtlePosition.x + stepSize * cos(M_PI*angle/180.0),
+                    turtlePosition.y + stepSize * sin(M_PI*angle/180.0));
 
             // push new points to line
             currentPolyline.push_back(newPosition);

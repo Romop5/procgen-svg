@@ -10,8 +10,7 @@ void saveResultAsSVGFile(json result, char* fileName);
 int main(int argc, char** argv)
 {
 
-    if(argc < 3)
-    {
+    if (argc < 3) {
         std::cout << "USAGE: " << argv[0] << " <fileName> <resultName>" << std::endl;
         return 1;
     }
@@ -22,25 +21,25 @@ int main(int argc, char** argv)
     //pg.parseFile("input.procgen");
     pg.parseFile(argv[1]);
     if (pg.isReady()) {
-	// Set uniforms
+        // Set uniforms
         pg.setUniform("WIDTH", WIDTH);
         pg.setUniform("HEIGHT", HEIGHT);
         if (pg.runInit() == false)
             return 1;
 
-	// Initialization is done, now run the derivation
+        // Initialization is done, now run the derivation
         pg.run(1);
 
-	// Serialize to JSON
+        // Serialize to JSON
         json result = pg.serialize();
         std::cout << "Result: " << result.dump(1) << "\n";
 
-	// Process resulting JSON tree as test.svg
+        // Process resulting JSON tree as test.svg
         saveResultAsSVGFile(result, argv[2]);
 
     } else {
         std::cout << "Failed...\n";
-	return 1;
+        return 1;
     }
     return 0;
 }
@@ -65,7 +64,6 @@ XML::Entity saveLine(json line)
     return xmlLine;
 }
 
-
 XML::Entity savePath(json arrayOfPoints)
 {
     using point_type = std::pair<float, float>;
@@ -78,8 +76,7 @@ XML::Entity savePath(json arrayOfPoints)
     */
 
     std::stringstream lineToString;
-    for(auto &point: arrayOfPoints)
-    {
+    for (auto& point : arrayOfPoints) {
         points.push_back(std::make_pair(point["x"].get<float>(), point["y"].get<float>()));
         lineToString << "L" << points.back().first << " " << points.back().second << " ";
     }
@@ -90,13 +87,8 @@ XML::Entity savePath(json arrayOfPoints)
 
     path["d"] = pathString.str();
 
-    
     return path;
 }
-
-
-
-
 
 XML::Entity saveCircle(json circle)
 {
@@ -138,7 +130,6 @@ std::string decodeStyle(json styleCollection)
         if (styleElement["_type"] == "strokeWidthStyle") {
             ss << "stroke-width: " << styleElement["thickness"].get<float>() << ";";
         }
-
     }
     return ss.str();
 }
@@ -169,7 +160,6 @@ void saveResultAsSVGFile(json result, char* fileName)
 
         XML::Entity resultEntity;
 
-
         // DETECT type of primitive and parse it HERE
         if (typeOfStructure == "ellipse")
             resultEntity = saveEllipse(structure);
@@ -197,7 +187,6 @@ void saveResultAsSVGFile(json result, char* fileName)
 
     fprintf(output, "<?xml version=\"1.0\" standalone=\"no\"?>\n");
     fprintf(output, "<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\" \"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd\">\n");
-
 
     if (output != nullptr) {
         svgTree.dump(output);

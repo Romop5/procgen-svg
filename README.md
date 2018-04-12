@@ -20,6 +20,8 @@ An example of using *ProcGen* library for SVG images.
 <p align="center">
 
 <img src="https://github.com/Romop5/procgen-svg/blob/master/build/turtle.snowflake.png?raw=true" width="300px">
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/turtle.labyrint.procgen.png?raw=true" width="300px">
+<img src="https://github.com/Romop5/procgen-svg/blob/master/build/turtle.classic.procgen.png?raw=true" width="300px">
 
 </p>
 
