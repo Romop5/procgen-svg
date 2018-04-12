@@ -53,7 +53,7 @@ void processTurtle(const json& symbols, const char* outputFileName,float thickne
     Point smallestPoint = Point(0,0);
     Point highestPoint= Point(0,0);
     // define the start state of turtle
-    float angle = 0.0;
+    float angle = -90.0;
     Point turtlePosition = Point(0,0);
 
     std::vector<Point> currentPolyline = { Point(0.0,0.0)};

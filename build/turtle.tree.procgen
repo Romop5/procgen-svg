@@ -24,8 +24,6 @@ using exampleRule = rule F
 
 int init()
 {
-   doMinus();
-   doMinus();
    doF();
    setMaximumIterations(4);
 }
