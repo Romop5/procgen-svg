@@ -2,7 +2,7 @@
 
 parameter float THICKNESS = 1.0;
 parameter float ANGLE = 60.0;
-parameter float STEPSIZE = 50.0;
+parameter float STEPSIZE = 10.0;
 
 // + F + F +
 using exampleRule = rule F

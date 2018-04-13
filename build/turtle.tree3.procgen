@@ -8,6 +8,7 @@ using A = struct { int lol; };
 int doA() { appendSymbol(A(0));}
 
 
+// A F [ + F F A ] [ - - - - F A ] F 
 using transform = rule A
 {
     return true;
