@@ -1,0 +1,129 @@
+/*
+ * File: bsp.procgen
+ * Author: Roman Dobias
+ * Purpose: generate 2D space separation
+ * Note: input structure bsp with boundaries
+ * Output: bspSpace with collection of areas (both room and halls)
+ *
+ */
+#include "svg.procgen"
+
+/*
+ * Algorith - BSP
+ * 1. split space into N subspaces and eventually generate bspCollector with single area
+ * 2. let bspCollector collect themselfs 
+ * 3. finally, get result in bspResult
+ */
+
+parameter float BSPRANDOMAMOUNT = 0.6;
+
+using bspArea = struct 
+{
+    float x1;
+    float y1;
+    float x2;
+    float y2;
+};
+
+using bspLevel = struct
+{
+    bspArea area;
+    int remainingIteration;
+};
+
+using bspCollector = struct {
+    int level;
+    // collection of bspAreas
+    collection areas;
+
+    // collection of bspAreas between bspAreas
+    collection paths;
+};
+
+
+using bspIteration = rule bspLevel
+{
+    if(this.remainingIteration > 0)
+    {
+        return true;
+    }
+    return false;
+} {
+    float middleX = (this.area.x1 + this.area.x2)*0.5;
+    float middleY = (this.area.y1 + this.area.y2)*0.5;
+    // randomly choose whether to split vertically or horizontally
+    if(random() < 0.5)
+    {
+        appendSymbol(bspLevel(bspArea(this.area.x1, this.area.y1, middleX, this.area.y2), this.remainingIteration -1));
+        appendSymbol(bspLevel(bspArea(middleX, this.area.y1, this.area.x2, this.area.y2), this.remainingIteration -1));
+    } else {
+        appendSymbol(bspLevel(bspArea(this.area.x1, this.area.y1, this.area.x2, middleY), this.remainingIteration -1));
+        appendSymbol(bspLevel(bspArea(this.area.x1, middleY, this.area.x2, this.area.y2), this.remainingIteration -1));
+    }
+};
+
+// linear interpolation
+float lerp(float pointa, float pointb, float p)
+{
+    return (pointa*(1.0-p) + pointb*p);
+}
+
+// get random rectangle inside
+bspArea bspGetRandomSubArea(bspArea input)
+{
+    float newX = lerp(input.x1, input.x2, uniform(0.0,BSPRANDOMAMOUNT));
+    float newY = lerp(input.y1, input.y2, uniform(0.0,BSPRANDOMAMOUNT));
+    float endX = lerp(newX, input.x2, uniform(1.0-BSPRANDOMAMOUNT,1.0));
+    float endY = lerp(newY, input.y2, uniform(1.0-BSPRANDOMAMOUNT,1.0));
+    return bspArea(newX, newY, endX, endY);
+}
+using bspConvert = rule bspLevel
+{
+    if(this.remainingIteration == 0)
+    {
+        return true;
+    }
+    return false;
+} {
+
+    bspArea finalRectangle = bspGetRandomSubArea(this.area);
+    // create collector
+    collection area;
+    area.insert(finalRectangle);
+    collection empty;
+    appendSymbol(bspCollector(this.remainingIteration, area, empty));
+
+    // visualise rectangle
+    collection STYLE;
+    STYLE.insert(fillColorStyle(REDCOLOR));
+    appendSymbol(rectangle(point(finalRectangle.x1, finalRectangle.y1), point(finalRectangle.x2, finalRectangle.y2), STYLE ));
+};
+
+
+bool bspHasCollectorAsNeighboor(int currentID)
+{
+    //if(hasSymbol(getC
+    //any nextSymbol = getSymbol(getCurrentStringId(), currentID+1);
+}
+
+using bspCollectinRule = rule bspLevel
+{
+    // detect if next symbol is bspCollector and has the same level
+    
+    return false;
+   // int nextOne = getCurrentPosition()+1;
+} {
+};
+
+int init()
+{
+    appendSymbol(bspLevel(bspArea(0.0,0.0,1024.0,1024.0), 3));
+    setRandomSeed(190.0);
+
+    //initSVG();
+    
+    //collection col;
+    //col.insert(fillColorStyle(REDCOLOR));
+
+    //appendSymbol(rectangle(point(0.0,0.0), point(100.0,100.0), col));
+}
