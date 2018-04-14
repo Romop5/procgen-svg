@@ -40,6 +40,11 @@ using bspCollector = struct {
     collection paths;
 };
 
+using bspFinal = struct 
+{
+    bspCollector finalProduct;
+};
+
 
 using bspIteration = rule bspLevel
 {
@@ -96,28 +101,80 @@ using bspConvert = rule bspLevel
     // visualise rectangle
     collection STYLE;
     STYLE.insert(fillColorStyle(REDCOLOR));
-    appendSymbol(rectangle(point(finalRectangle.x1, finalRectangle.y1), point(finalRectangle.x2, finalRectangle.y2), STYLE ));
+    //appendSymbol(rectangle(point(finalRectangle.x1, finalRectangle.y1), point(finalRectangle.x2, finalRectangle.y2), STYLE ));
 };
-
 
 bool bspHasCollectorAsNeighboor(int currentID)
 {
-    //if(hasSymbol(getC
-    //any nextSymbol = getSymbol(getCurrentStringId(), currentID+1);
+    if(hasSymbol(getCurrentStringId(), currentID+1))
+    {
+        any nextSymbol = getSymbol(getCurrentStringId(), currentID+1);
+        if(typeid(nextSymbol) == typeid<bspCollector>)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
-using bspCollectinRule = rule bspLevel
+
+bool bspHasCollectorAsNeighboorWithLevel(int currentID, int level)
+{
+    if(hasSymbol(getCurrentStringId(), currentID+1))
+    {
+        any nextSymbol = getSymbol(getCurrentStringId(), currentID+1);
+        if(typeid(nextSymbol) == typeid<bspCollector>)
+        {
+            bspCollector bspNext = convert<bspCollector>(nextSymbol);
+            if(bspNext.level == level)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+using bspCollectinRule = rule bspCollector 
 {
     // detect if next symbol is bspCollector and has the same level
-    
+    if(bspHasCollectorAsNeighboorWithLevel(getCurrentPosition(),this.level))
+    {
+        return true;
+    } 
     return false;
-   // int nextOne = getCurrentPosition()+1;
 } {
+    // merge this and its neighbour
+
+    bspCollector neigh = convert<bspCollector>(getSymbol(getCurrentStringId(), getCurrentPosition()+1));
+   
+    int iterator = neigh.areas.size(); 
+    // copy to this
+    while(iterator > 0)
+    {
+        this.areas.insert(neigh.areas.at(iterator-1));
+        iterator = iterator -1;
+    }
+    this.level = this.level + 1;
+    appendSymbol(this);
+    skipSymbol();
+};
+
+using bspFinalRule = rule bspCollector 
+{
+    if(bspHasCollectorAsNeighboor(getCurrentPosition()) == false)
+    {
+        return true;
+    }
+    return false;
+} {
+    // append final structure
+    appendSymbol(bspFinal(this));
 };
 
 int init()
 {
-    appendSymbol(bspLevel(bspArea(0.0,0.0,1024.0,1024.0), 3));
+    appendSymbol(bspLevel(bspArea(0.0,0.0,1024.0,1024.0), 1));
     setRandomSeed(190.0);
 
     //initSVG();
