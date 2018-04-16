@@ -135,6 +135,71 @@ bool bspHasCollectorAsNeighboorWithLevel(int currentID, int level)
     return false;
 }
 
+float min(float a, float b)
+{
+    if(a > b)
+    {
+        return b;
+    }
+    return a;
+}
+
+float abs(float a)
+{
+    if(a > 0)
+    {
+        return a;
+    }
+    return -a;
+}
+
+float distanceBetweenBspAreas(bspArea first, bspArea second)
+{
+    point a = point((first.x1+first.x2)*0.5, (first.y1+first.y2)*0.5);
+    point b = point((second.x1+second.x2)*0.5, (second.y1+second.y2)*0.5);
+    point diff = point(a.x - b.x, a.y-b.y);
+    return sqrt(diff.x*diff.x, diff.y*diff.y);
+}
+
+float isInRange(float left, float right, float test)
+{
+    return (left <= test && right >= test);
+}
+
+collection createPathBetweenAreas(collection first, second)
+{
+    // get two closes areas from both groups
+    int firstID = 0;
+    int secondID = 0;
+    float minDistance = 100000000000000000000000;
+
+    int i = first.size();
+    while(i > 0)
+    {
+        int j = second.size();
+        while(j > 0)
+        {
+            float currentDistance = distanceBetweenBspAreas(convert<bspArea>(first.at(i-1)), convert<bspArea>(second.at(j-1)));
+            if(currentDistance < minDistance)
+            {
+                minDistance = currentDistance;
+                firstID = i-1;
+                secondID = j-1;
+            } 
+        }
+    }
+
+    // create path between these rectangles
+    bspArea firstArea = convert<bspArea>(first.at(firstId));
+    bspArea secondArea = convert<bspArea>(second.at(firstId));
+
+
+    if(isInRange(firstArea.x1, firstArea.x2, secondArea.x1))
+    {
+        
+    }
+}
+
 using bspCollectinRule = rule bspCollector 
 {
     // detect if next symbol is bspCollector and has the same level
@@ -172,9 +237,27 @@ using bspFinalRule = rule bspCollector
     appendSymbol(bspFinal(this));
 };
 
+using visualize = rule bspFinal
+{
+    return true;
+} 
+{
+    collection col;
+    col.insert(fillColorStyle(REDCOLOR));
+    int iterator = this.finalProduct.areas.size(); 
+    // copy to this
+    while(iterator > 0)
+    {
+        bspArea area = convert<bspArea>(this.finalProduct.areas.at(iterator-1));
+        appendSymbol(rectangle(point(area.x1, area.y1), point(area.x2, area.y2),col));
+        iterator = iterator -1;
+    }
+    
+};
+
 int init()
 {
-    appendSymbol(bspLevel(bspArea(0.0,0.0,1024.0,1024.0), 1));
+    appendSymbol(bspLevel(bspArea(0.0,0.0,1024.0,1024.0), 2));
     setRandomSeed(190.0);
 
     //initSVG();

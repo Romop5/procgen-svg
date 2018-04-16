@@ -99,6 +99,19 @@ XML::Entity saveCircle(json circle)
     return xmlCircle;
 }
 
+
+XML::Entity saveRectangle(json rectangle)
+{
+    XML::Entity xmlRectangle("rect");
+    xmlRectangle["x"] = std::to_string(rectangle["a"]["x"].get<float>());
+    xmlRectangle["y"] = std::to_string(rectangle["a"]["y"].get<float>());
+
+    xmlRectangle["width"] = std::to_string(rectangle["b"]["x"].get<float>() - rectangle["a"]["x"].get<float>());
+    xmlRectangle["height"] = std::to_string(rectangle["b"]["y"].get<float>() - rectangle["a"]["y"].get<float>());
+
+    return xmlRectangle;
+}
+
 std::string rgbToString(json rgb)
 {
     std::stringstream ss;
@@ -173,12 +186,19 @@ void saveResultAsSVGFile(json result, char* fileName)
         if (typeOfStructure == "path")
             resultEntity = savePath(structure["points"]);
 
+        if (typeOfStructure == "rectangle")
+            resultEntity = saveRectangle(structure);
+
         if (structure.find("style") != structure.end()) {
             auto styleString = decodeStyle(structure["style"]);
             resultEntity["style"] = styleString;
         }
 
-        svgTree.addChild(resultEntity);
+        // if symbol was a valid SVG primitive, then append it into SVG tree
+        if(resultEntity.getName() != "entity")
+        {
+            svgTree.addChild(resultEntity);
+        }
     }
 
     // Ready to dump it out

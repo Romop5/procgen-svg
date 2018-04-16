@@ -60,6 +60,7 @@ public:
     }
 
     void setName(std::string name) { this->name = name; }
+    const std::string& getName() const { return this->name;}
 
     void addChild(Entity entity) { this->children.push_back(entity); }
 };

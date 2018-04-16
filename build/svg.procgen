@@ -86,6 +86,13 @@ using path= struct {
     collection style;
 };
 
+// <rect x=a.x y=a.y width=(b.x-a.x), height=(b.y-a.y)>
+using rectangle = struct {
+    point a;
+    point b;
+    collection style;
+};
+
 
 
 
