@@ -15,7 +15,7 @@
  * 3. finally, get result in bspResult
  */
 
-parameter float BSPRANDOMAMOUNT = 0.6;
+parameter float BSPRANDOMAMOUNT = 0.4;
 
 using bspArea = struct 
 {
@@ -23,6 +23,11 @@ using bspArea = struct
     float y1;
     float x2;
     float y2;
+};
+using bspPoint = struct
+{
+    float x; 
+    float y;
 };
 
 using bspLevel = struct
@@ -45,28 +50,6 @@ using bspFinal = struct
     bspCollector finalProduct;
 };
 
-
-using bspIteration = rule bspLevel
-{
-    if(this.remainingIteration > 0)
-    {
-        return true;
-    }
-    return false;
-} {
-    float middleX = (this.area.x1 + this.area.x2)*0.5;
-    float middleY = (this.area.y1 + this.area.y2)*0.5;
-    // randomly choose whether to split vertically or horizontally
-    if(random() < 0.5)
-    {
-        appendSymbol(bspLevel(bspArea(this.area.x1, this.area.y1, middleX, this.area.y2), this.remainingIteration -1));
-        appendSymbol(bspLevel(bspArea(middleX, this.area.y1, this.area.x2, this.area.y2), this.remainingIteration -1));
-    } else {
-        appendSymbol(bspLevel(bspArea(this.area.x1, this.area.y1, this.area.x2, middleY), this.remainingIteration -1));
-        appendSymbol(bspLevel(bspArea(this.area.x1, middleY, this.area.x2, this.area.y2), this.remainingIteration -1));
-    }
-};
-
 // linear interpolation
 float lerp(float pointa, float pointb, float p)
 {
@@ -82,6 +65,41 @@ bspArea bspGetRandomSubArea(bspArea input)
     float endY = lerp(newY, input.y2, uniform(1.0-BSPRANDOMAMOUNT,1.0));
     return bspArea(newX, newY, endX, endY);
 }
+
+using bspIteration = rule bspLevel
+{
+    if(this.remainingIteration > 0)
+    {
+        return true;
+    }
+    return false;
+} {
+ 
+    if(random() < 0.05)
+    {
+        bspArea finalRectangle = bspGetRandomSubArea(this.area);
+        // create collector
+        collection area;
+        area.insert(finalRectangle);
+        collection empty;
+        appendSymbol(bspCollector(this.remainingIteration, area, empty));
+        return;
+    }
+
+  
+    float middleX = (this.area.x1 + this.area.x2)*0.5;
+    float middleY = (this.area.y1 + this.area.y2)*0.5;
+    // randomly choose whether to split vertically or horizontally
+    if(random() < 0.5)
+    {
+        appendSymbol(bspLevel(bspArea(this.area.x1, this.area.y1, middleX, this.area.y2), this.remainingIteration -1));
+        appendSymbol(bspLevel(bspArea(middleX, this.area.y1, this.area.x2, this.area.y2), this.remainingIteration -1));
+    } else {
+        appendSymbol(bspLevel(bspArea(this.area.x1, this.area.y1, this.area.x2, middleY), this.remainingIteration -1));
+        appendSymbol(bspLevel(bspArea(this.area.x1, middleY, this.area.x2, this.area.y2), this.remainingIteration -1));
+    }
+};
+
 using bspConvert = rule bspLevel
 {
     if(this.remainingIteration == 0)
@@ -163,10 +181,22 @@ float distanceBetweenBspAreas(bspArea first, bspArea second)
 
 float isInRange(float left, float right, float test)
 {
-    return (left <= test && right >= test);
+    return (left < test && right > test && left == test && right == test);
 }
 
-collection createPathBetweenAreas(collection first, second)
+float distance2d(float x1, float y1, float x2, float y2)
+{
+    float diffx = x1 - x2;
+    float diffy = y1 - y2;
+
+    return sqrt(diffx*diffy+diffy*diffy);
+}
+
+bspPoint bspAreaAveragePoint(bspArea area)
+{
+    return bspPoint((area.x1+area.x2)*0.5, (area.y1+area.y2)*0.5);
+}
+collection createPathBetweenAreas(collection first, collection second)
 {
     // get two closes areas from both groups
     int firstID = 0;
@@ -186,18 +216,77 @@ collection createPathBetweenAreas(collection first, second)
                 firstID = i-1;
                 secondID = j-1;
             } 
+            j = j -1;
         }
+        i = i -1;
     }
 
-    // create path between these rectangles
-    bspArea firstArea = convert<bspArea>(first.at(firstId));
-    bspArea secondArea = convert<bspArea>(second.at(firstId));
+    // find two points from these areas which should lay closest
+    bspArea firstArea = convert<bspArea>(first.at(firstID));
+    bspArea secondArea = convert<bspArea>(second.at(firstID));
 
+    float firstX = firstArea.x1;
+    float firstY = firstArea.y1;
+    float secondX= secondArea.x1;
+    float secondY= secondArea.y1;
 
-    if(isInRange(firstArea.x1, firstArea.x2, secondArea.x1))
+    bspPoint avgPoint1 = bspAreaAveragePoint(firstArea);
+    bspPoint avgPoint2 = bspAreaAveragePoint(secondArea);
+
+    bspPoint avgPoint = bspPoint((avgPoint1.x+avgPoint2.x)*0.5, (avgPoint1.y+avgPoint2.y)*0.5);
+
+    if(distance2d(firstArea.x1, firstArea.y1, avgPoint.x,avgPoint.y) < distance2d(firstX, firstY, avgPoint.x,avgPoint.y))
     {
-        
+        firstX = firstArea.x1;
+        firstY = firstArea.y1;
     }
+    if(distance2d(firstArea.x1, firstArea.y2, avgPoint.x,avgPoint.y) < distance2d(firstX, firstY, avgPoint.x,avgPoint.y))
+    {
+        firstX = firstArea.x1;
+        firstY = firstArea.y2;
+    }
+    if(distance2d(firstArea.x2, firstArea.y2, avgPoint.x,avgPoint.y) < distance2d(firstX, firstY, avgPoint.x,avgPoint.y))
+    {
+        firstX = firstArea.x2;
+        firstY = firstArea.y2;
+    }
+    if(distance2d(firstArea.x2, firstArea.x1, avgPoint.x,avgPoint.y) < distance2d(firstX, firstY, avgPoint.x,avgPoint.y))
+    {
+        firstX = firstArea.x2;
+        firstY = firstArea.x1;
+    }
+
+    if(distance2d(secondArea.x1, secondArea.y1, avgPoint.x,avgPoint.y) < distance2d(secondX, secondY, avgPoint.x,avgPoint.y))
+    {
+        secondX = secondArea.x1;
+        secondY = secondArea.y1;
+    }
+    if(distance2d(secondArea.x1, secondArea.y2, avgPoint.x,avgPoint.y) < distance2d(secondX, secondY, avgPoint.x,avgPoint.y))
+    {
+        secondX = secondArea.x1;
+        secondY = secondArea.y2;
+    }
+    if(distance2d(secondArea.x2, secondArea.y2, avgPoint.x,avgPoint.y) < distance2d(secondX, secondY, avgPoint.x,avgPoint.y))
+    {
+        secondX = secondArea.x2;
+        secondY = secondArea.y2;
+    }
+    if(distance2d(secondArea.x2, secondArea.x1, avgPoint.x,avgPoint.y) < distance2d(secondX, secondY, avgPoint.x,avgPoint.y))
+    {
+        secondX = secondArea.x2;
+        secondY = secondArea.x1;
+    }
+
+
+
+
+
+    // create path between those two points
+    collection paths;
+    paths.insert(bspArea(firstX, firstY, firstX+10.0, secondY+10.0));
+    paths.insert(bspArea(firstX+10.0, secondY+10.0, secondX, secondY));
+    return paths;
+
 }
 
 using bspCollectinRule = rule bspCollector 
@@ -220,6 +309,25 @@ using bspCollectinRule = rule bspCollector
         this.areas.insert(neigh.areas.at(iterator-1));
         iterator = iterator -1;
     }
+
+    iterator = neigh.paths.size(); 
+    // copy to this
+    while(iterator > 0)
+    {
+        this.paths.insert(neigh.paths.at(iterator-1));
+        iterator = iterator -1;
+    }
+
+    // join sectors
+    collection joiningPaths = createPathBetweenAreas(neigh.areas, this.areas);
+    iterator = joiningPaths.size(); 
+    // copy to this
+    while(iterator > 0)
+    {
+        this.paths.insert(joiningPaths.at(iterator-1));
+        iterator = iterator -1;
+    }
+
     this.level = this.level + 1;
     appendSymbol(this);
     skipSymbol();
@@ -244,20 +352,33 @@ using visualize = rule bspFinal
 {
     collection col;
     col.insert(fillColorStyle(REDCOLOR));
+
+    collection colPaths;
+    colPaths.insert(fillColorStyle(rgb(0,255,0)));
     int iterator = this.finalProduct.areas.size(); 
-    // copy to this
+    bspArea area;
     while(iterator > 0)
     {
-        bspArea area = convert<bspArea>(this.finalProduct.areas.at(iterator-1));
+        area = convert<bspArea>(this.finalProduct.areas.at(iterator-1));
         appendSymbol(rectangle(point(area.x1, area.y1), point(area.x2, area.y2),col));
         iterator = iterator -1;
     }
+
+    iterator = this.finalProduct.paths.size(); 
+    // copy to this
+    while(iterator > 0)
+    {
+        area = convert<bspArea>(this.finalProduct.paths.at(iterator-1));
+        appendSymbol(rectangle(point(area.x1, area.y1), point(area.x2, area.y2),colPaths));
+        iterator = iterator -1;
+    }
+
     
 };
 
 int init()
 {
-    appendSymbol(bspLevel(bspArea(0.0,0.0,1024.0,1024.0), 2));
+    appendSymbol(bspLevel(bspArea(0.0,0.0,1024.0,1024.0), 7));
     setRandomSeed(190.0);
 
     //initSVG();
