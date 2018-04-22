@@ -33,7 +33,13 @@ An example of using *ProcGen* library for SVG images.
 ## Usage
 
 1. Write down script using ProcGen language and primitives defined in `svg.procgen`. 
-2. Run `./svgprocgen <scriptName> <pictureName.svg>` to get SVG picture.
+2. Run `./svgprocgen <scriptName> <pictureName.svg> [<JSONparameterLiteral]` to get SVG picture.
 3. Use *convert* from *ImageTricks* to convert SVG to PNG.
+
+Note: you can change parameter's value from command-like.
+For example, if you define ```parameter int iterations = 1;``` in script test.procgen,
+then you can call render with overwritten value like this:
+
+`./svgprocgen "test.procgen" "test.svg" '{"iterations": 10}'
 
 

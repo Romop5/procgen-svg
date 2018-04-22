@@ -11,8 +11,16 @@ int main(int argc, char** argv)
 {
 
     if (argc < 3) {
-        std::cout << "USAGE: " << argv[0] << " <fileName> <resultName>" << std::endl;
+        std::cout << "USAGE: " << argv[0] << " <fileName> <resultName> <uniformJSONtext" << std::endl;
+        std::cout << "For example, <uniformJSONtext>: '{iterations: 10, thickness: 5.0' " << std::endl;
         return 1;
+    }
+
+    json inputUniformValues;
+    //
+    if ( argc >= 4)
+    {
+        inputUniformValues = json::parse(argv[3]);
     }
 
     ProcGen::Procgen pg;
@@ -24,6 +32,27 @@ int main(int argc, char** argv)
         // Set uniforms
         pg.setUniform("WIDTH", WIDTH);
         pg.setUniform("HEIGHT", HEIGHT);
+
+        
+        // special iterator member functions for objects
+        for (json::iterator it = inputUniformValues.begin(); it != inputUniformValues.end(); ++it) {
+            auto name = it.key();
+
+            if(it.value().is_number_float())
+            {
+                float num = it.value().get<float>();
+                if(pg.setUniform(name, num) == false)
+                    LOG_ERROR("Failed to set uniform %s value\n", name.c_str());
+            }
+            if(it.value().is_number_integer())
+            {
+                int num = it.value().get<int>();
+                if(pg.setUniform(name, num) == false)
+                    LOG_ERROR("Failed to set uniform %s value\n", name.c_str());
+            }
+
+        }
+
         if (pg.runInit() == false)
             return 1;
 
@@ -103,11 +132,31 @@ XML::Entity saveCircle(json circle)
 XML::Entity saveRectangle(json rectangle)
 {
     XML::Entity xmlRectangle("rect");
-    xmlRectangle["x"] = std::to_string(rectangle["a"]["x"].get<float>());
-    xmlRectangle["y"] = std::to_string(rectangle["a"]["y"].get<float>());
+    float x = rectangle["a"]["x"];
+    float y = rectangle["a"]["y"];
 
-    xmlRectangle["width"] = std::to_string(rectangle["b"]["x"].get<float>() - rectangle["a"]["x"].get<float>());
-    xmlRectangle["height"] = std::to_string(rectangle["b"]["y"].get<float>() - rectangle["a"]["y"].get<float>());
+    float x2 = rectangle["b"]["x"];
+    float y2 = rectangle["b"]["y"];
+
+    if(x2-x < 0)
+    {
+        std::swap(x,x2);
+    }
+
+    if(y2-y < 0)
+    {
+        std::swap(y,y2);
+    }
+
+    float width = x2-x;
+    float height = y2-y;
+
+
+    xmlRectangle["x"] = std::to_string(x);
+    xmlRectangle["y"] = std::to_string(y);
+
+    xmlRectangle["width"] = std::to_string(width);
+    xmlRectangle["height"] = std::to_string(height);
 
     return xmlRectangle;
 }
