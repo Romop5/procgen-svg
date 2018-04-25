@@ -1,0 +1,31 @@
+#include "stdturtle.procgen"
+
+parameter float THICKNESS = 5.0;
+parameter float ANGLE = 90.0;
+parameter float STEPSIZE = 50.0;
+
+using D = struct {
+    int a;
+};
+int doD()
+{
+    appendSymbol(D(1));
+}
+// + F + F +
+using exampleRule = rule D
+{
+    return true;
+} {
+    doF();
+    doPlus();
+    doF();
+    doMinus();
+    doD();
+};
+
+int init()
+{
+   doD();
+   setMaximumIterations(4);
+}
+
