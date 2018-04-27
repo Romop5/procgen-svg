@@ -4,6 +4,8 @@
 #include <algorithm>
 #include <cmath> // <ctin> ? pun intended
 
+using namespace ProcGen;
+
 // Define 2D vector to simplify code
 struct Point
 {
