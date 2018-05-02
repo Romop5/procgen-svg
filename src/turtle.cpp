@@ -69,7 +69,9 @@ void processTurtle(const ProcGen::Procgen& procgen, const char* outputFileName,f
     const size_t count = procgen.countOfSymbols();
     for (size_t i = 0; i < count; i++)
     {
+        LOG_INFO("Processing symbol\n");
         auto symbol = procgen.at(i);
+        LOG_INFO("Symbol: %s\n", symbol.dump(1).c_str());
         if (symbol["_type"] == "F") {
             Point newPosition = Point(
                     turtlePosition.x + stepSize * cos(M_PI*angle/180.0),

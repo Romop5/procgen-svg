@@ -1,0 +1,32 @@
+#include "svg.procgen"
+#include "std2dlinear.procgen"
+
+parameter float multiplier = 0.6;
+parameter float rotationAngle = 30.0;
+
+using metaF = struct {
+    vec2 position;
+    vec2 direction;
+    float thickness;
+};
+
+using transform = rule metaF 
+{
+    return true;
+} {
+
+    vec2 end = vec2Add(this.position, this.direction);
+    appendSymbol(line(this.position.x,this.position.y, end.x, end.y,collection(strokeWidthStyle(this.thickness), strokeColorStyle(rgb(255,0,0))))); 
+    this.direction = vec2Mul(this.direction, multiplier);
+    this.thickness = this.thickness*multiplier;
+    vec2 forkA = mat2MulVector(rotate(3.1415*rotationAngle/180.0), this.direction);
+    appendSymbol(metaF(end,forkA,this.thickness));
+    vec2 forkB = mat2MulVector(rotate(3.1415*(-rotationAngle)/180.0), this.direction);
+    appendSymbol(metaF(end,forkB,this.thickness));
+};
+
+int init()
+{
+    appendSymbol(metaF(vec2(512.0,1024.0), vec2(0.0,-400.0), 30.0));
+    setMaximumIterations(10);
+}
