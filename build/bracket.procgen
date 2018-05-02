@@ -5,6 +5,8 @@
 */
 #include "svg.procgen"
 
+parameter int iterations = 3;
+
 parameter float ANGLE = 60.0;
 parameter float RATE = 0.6;
 
@@ -55,7 +57,8 @@ using transform = rule seed
 
 int init()
 {
+    ANGLE = (float)(iterations)*1.0;
     // start seed at the bottom of SVG picture, covering whole picture
     appendSymbol(seed(point(500.0,900.0), point(0.0,-700.0),30.0));
-    setMaximumIterations(12);
+    setMaximumIterations(3);
 }
