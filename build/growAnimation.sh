@@ -21,11 +21,12 @@ mkdir gifPictures
 
 for i in `seq 1 $2`; do 
  
-./svgcreator newhash.procgen gifPictures/$i.svg "{\"iterations\": $i}"
+OUTPUT_SVG_NAME=`printf "gifPictures/%05d.svg" $i`
+./svgcreator ${SCRIPTNAME} ${OUTPUT_SVG_NAME} "{\"iterations\": $i}"
 done;
 # 2. Convert to gif
 
-convert -delay 50 -loop 0 gifPictures/*svg ${SCRIPTNAME}.gif
+convert -delay 10 -loop 0 gifPictures/*svg ${SCRIPTNAME}.gif
 
 echo "It's done in ${SCRIPTNAME}.gif"
 

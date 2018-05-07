@@ -17,12 +17,12 @@ using transform = rule pseudopath
     this.TTL = this.TTL - 1;
 
     collection newPoints;
-    while(this.data.path.size() > 0)
+    while(this.data.points.size() > 0)
     {
-        point first = this.data.path.at(0);
-        point second = this.data.path.at(1);
-        this.data.path.del(0);
-        this.data.path.del(0);
+        point first = convert<point>(this.data.points.at(0));
+        point second = convert<point>(this.data.points.at(1));
+        this.data.points.del(0);
+        this.data.points.del(0);
 
         // calculate new point
 
@@ -33,7 +33,7 @@ using transform = rule pseudopath
         newPoints.insert(newPoint);
         newPoints.insert(second);
     }
-    this.data.path = newPoints;
+    this.data.points = newPoints;
     appendSymbol(this);
 };
 

@@ -6,7 +6,7 @@ using namespace ProcGen;
 const int WIDTH = 1024;
 const int HEIGHT = 1024;
 
-void saveResultAsSVGFile(json result, char* fileName);
+void saveResultAsSVGFile(Procgen& procgen, char* fileName);
 int main(int argc, char** argv)
 {
 
@@ -60,11 +60,11 @@ int main(int argc, char** argv)
         pg.run(1);
 
         // Serialize to JSON
-        json result = pg.serialize();
-        std::cout << "Result: " << result.dump(1) << "\n";
+        //json result = pg.serialize();
+        //std::cout << "Result: " << result.dump(1) << "\n";
 
         // Process resulting JSON tree as test.svg
-        saveResultAsSVGFile(result, argv[2]);
+        saveResultAsSVGFile(pg, argv[2]);
 
     } else {
         std::cout << "Failed...\n";
@@ -195,7 +195,7 @@ std::string decodeStyle(json styleCollection)
     return ss.str();
 }
 
-void saveResultAsSVGFile(json result, char* fileName)
+void saveResultAsSVGFile(Procgen& procgen, char* fileName)
 {
     // Create XML tree for SVG file
     XML::Exporter svgFile;
@@ -211,7 +211,10 @@ void saveResultAsSVGFile(json result, char* fileName)
     svgTree["viewBox"] = viewBoxString.str();
 
     // for all top-level structures in result
-    for (auto& structure : result) {
+    size_t count = procgen.countOfSymbols();
+    for (size_t i = 0; i < count; i++)
+    {
+        json structure = procgen.at(i);
         // if structure doesn't have any type, than we can not process it
         // and thus it's discarded
         if (structure.find("_type") == structure.end())

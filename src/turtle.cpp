@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <cmath> // <ctin> ? pun intended
 
-using namespace ProcGen;
+using json = nlohmann::json;
 
 // Define 2D vector to simplify code
 struct Point
@@ -42,7 +42,7 @@ Point max(const Point& first, const Point& second)
     return Point(std::max(first.x, second.x), std::max(first.y, second.y));
 }
 
-void processTurtle(const json& symbols, const char* outputFileName,float thickness = 2.0,float incrementalAngle = 90.0, float stepSize = 10.0)
+void processTurtle(const ProcGen::Procgen& procgen, const char* outputFileName,float thickness = 2.0,float incrementalAngle = 90.0, float stepSize = 10.0)
 {
     // define output SVG file
     XML::Exporter svgFile;
@@ -66,7 +66,12 @@ void processTurtle(const json& symbols, const char* outputFileName,float thickne
 
 
     // trace the L-system string
-    for (auto& symbol : symbols) {
+    const size_t count = procgen.countOfSymbols();
+    for (size_t i = 0; i < count; i++)
+    {
+        LOG_INFO("Processing symbol\n");
+        auto symbol = procgen.at(i);
+        LOG_INFO("Symbol: %s\n", symbol.dump(1).c_str());
         if (symbol["_type"] == "F") {
             Point newPosition = Point(
                     turtlePosition.x + stepSize * cos(M_PI*angle/180.0),
@@ -161,8 +166,8 @@ int main(int argc, char ** argv)
         pg.run(1);
 
         // Serialize to JSON
-        json result = pg.serialize();
-        std::cout << "Result: " << result.dump(1) << "\n";
+        //json result = pg.serialize();
+        //std::cout << "Result: " << result.dump(1) << "\n";
 
         float thickness = 2.0;
         pg.getUniform("THICKNESS", &thickness);
@@ -173,7 +178,7 @@ int main(int argc, char ** argv)
         float stepsize = 10.0;
         pg.getUniform("STEPSIZE", &stepsize);
         // Process resulting JSON tree as test.svg
-        processTurtle(result, argv[2],thickness,angle, stepsize);
+        processTurtle(pg, argv[2],thickness,angle, stepsize);
 
     } else {
         LOG_ERROR("Failed to compile file '%s'\n", inputFile);
