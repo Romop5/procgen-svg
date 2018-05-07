@@ -98,11 +98,8 @@ XML::Entity savePath(json arrayOfPoints)
     using point_type = std::pair<float, float>;
     std::vector<point_type> points;
     XML::Entity path("path");
-    /*xmlLine["x1"] = std::to_string(line["x"].get<float>());
-    xmlLine["y1"] = std::to_string(line["y"].get<float>());
-    xmlLine["x2"] = std::to_string(line["xb"].get<float>());
-    xmlLine["y2"] = std::to_string(line["yb"].get<float>());
-    */
+    if(arrayOfPoints.size() == 0)
+        return path;
 
     std::stringstream lineToString;
     for (auto& point : arrayOfPoints) {
@@ -110,10 +107,12 @@ XML::Entity savePath(json arrayOfPoints)
         lineToString << "L" << points.back().first << " " << points.back().second << " ";
     }
 
+    // use first point to move
+    std::stringstream moveToPoint;
+    moveToPoint << "M" << arrayOfPoints[0]["x"].get<float>() << " " << arrayOfPoints[0]["x"].get<float>() << " ";
     std::stringstream pathString;
-
-    pathString << "M0 0 " << lineToString.str() << "Z";
-
+    //pathString << "M0 0 " << lineToString.str() << "Z";
+    pathString << moveToPoint.str() << lineToString.str() << "Z";
     path["d"] = pathString.str();
 
     return path;
