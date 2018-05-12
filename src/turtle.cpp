@@ -2,7 +2,12 @@
 #include <procgen/procgen.h>
 #include <procgen/utils/logger.h>
 #include <algorithm>
+
+#define _USE_MATH_DEFINES
 #include <cmath> // <ctin> ? pun intended
+
+// low-precision PI, because M_PI sucks at Windows
+#define MY_PI 3.1415
 
 using json = nlohmann::json;
 
@@ -74,8 +79,8 @@ void processTurtle(const ProcGen::Procgen& procgen, const char* outputFileName,f
         LOG_INFO("Symbol: %s\n", symbol.dump(1).c_str());
         if (symbol["_type"] == "F") {
             Point newPosition = Point(
-                    turtlePosition.x + stepSize * cos(M_PI*angle/180.0),
-                    turtlePosition.y + stepSize * sin(M_PI*angle/180.0));
+                    turtlePosition.x + stepSize * cos(MY_PI*angle/180.0),
+                    turtlePosition.y + stepSize * sin(MY_PI*angle/180.0));
 
             // push new points to line
             currentPolyline.push_back(newPosition);
